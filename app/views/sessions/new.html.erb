@@ -1,0 +1,21 @@
+<%= form_tag('/sessions', method: :post) do %>
+
+  <div class="control-group">
+    <%= label_tag 'email', 'Email', :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag 'email', nil, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= label_tag 'email', 'Senha', :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag 'password', nil, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+
+    <%= submit_tag "Login", :class => 'btn btn-primary'%>
+    
+  </div>
+<% end %>
