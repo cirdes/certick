@@ -1,5 +1,7 @@
 Certick::Application.routes.draw do
 
+  resources :certifieds
+
   root 'sessions#new'
   resources :sessions, only: [:new, :create]
 

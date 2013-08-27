@@ -1,20 +1,46 @@
 class SessionsController < ApplicationController
+
 	def new
-		@user = User.new
+		 @user = User.new
 	end
 
 	def create
 		
-    #@user = User.new
+		token = authenticate(params[:email], params[:password])
 
-    #@user.email = params[:email]
-    #@user.password = params[:password]
+		if token != nil 
+			puts "token: #{token}"
+			current_user = get_user(token)
+			
 
-    auth = Eventick::Auth.new
-    #@auth.email = @user.email
-		#@auth.password = @user.password
+			redirect_to certifieds_path, notice: 'Welcome.'
+		else
+			redirect_to root_path, notice: 'User is not a valid eventick user.'
+		end	
+	end
+	
+	private
 
+	def get_user(token)
+		user = User.where(token: token)
+		if user == nil
+			user = User.new 
 
-    redirect_to templates_path, notice: 'User was successfully created.'
-  end
+			user.email = params[:email]
+			user.token = token
+
+			User.save(user)
+		end	
+		user
+	end	
+
+	def authenticate(email, password)
+		auth = Eventick::Auth.new
+		auth.email = email
+		auth.password = password
+
+		auth.token
+
+	end	
+
 end

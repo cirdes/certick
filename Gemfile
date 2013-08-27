@@ -28,11 +28,19 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+	# bundle exec rake doc:rails generates the API under doc/api.
+	gem 'sdoc', require: false
 end
 
 gem "twitter-bootstrap-rails"
+
+gem 'eventick_api', git: "https://github.com/lukelex/eventick_api.git"
+
+group :development, :test do
+	gem 'rspec-rails', '~> 2.0'
+end
+
+gem "factory_girl_rails", "~> 4.0"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
