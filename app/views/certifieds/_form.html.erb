@@ -2,9 +2,25 @@
   <div class="control-group">
     <%= f.label :slug, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :slug, :class => 'text_field' %>
+      <%= text_field_tag 'slug', slug_full_url, :class => 'text_field', :readonly => true, :style => 'width: 90%;' %>
     </div>
   </div>
+  <div class="control-group">
+    <%= f.label :background, :class => 'control-label' %>
+
+    <div id="uploader" class="controls" >
+      <%= f.file_field :background %>
+    </div>
+  </div>
+
+  <% if @certified.background? %>
+    <div class="control-group">
+
+      <div id="uploader_image" class="controls images">
+        <%= image_tag @certified.background.url(:medium) %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

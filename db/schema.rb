@@ -11,12 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130813180527) do
+ActiveRecord::Schema.define(version: 20130827192821) do
 
   create_table "certifieds", force: true do |t|
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "background_file_name"
+    t.string   "background_content_type"
+    t.integer  "background_file_size"
+    t.datetime "background_updated_at"
   end
 
   create_table "users", force: true do |t|

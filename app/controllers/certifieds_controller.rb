@@ -14,20 +14,25 @@ class CertifiedsController < ApplicationController
 
   # GET /certifieds/new
   def new
-    # Eventick.config do |c| 
-    #   c.token = 'rFiwd6gmsScxWW1xEW4z'
+
+    # Eventick.config do |c|
+    #   c.email = 'gporpino@gmail.com'
+    #   c.password = 'nig231285'
     # end
-    puts 'chegou aqui'
-    token = authenticate('gporpino@gmail.com', 'nig231285')
 
-    # if token != nil 
-      puts "token: #{token}"
-    # current_user = get_user(token)
+    # @events = Eventick::Event.all
 
-    @events = Eventick::Event.all
-    
+    @events = Array.new
+    5.times  do |i|
+      event = Eventick::Event.new
+
+      event.title = 'teste' + i.to_s
+
+      @events << event 
+    end
 
     @certified = Certified.new
+    @certified.slug = generate_token
   end
 
   # GET /certifieds/1/edit
@@ -74,6 +79,15 @@ class CertifiedsController < ApplicationController
     end
   end
 
+  protected
+
+    def generate_token
+      token = loop do
+        random_token = SecureRandom.urlsafe_base64(nil, false)
+        break random_token unless Certified.where(slug: random_token).exists?
+      end
+    end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_certified
@@ -82,32 +96,6 @@ class CertifiedsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def certified_params
-      params.require(:certified).permit(:slug)
+      params.require(:certified).permit(:slug, :background)
     end
-
-
-
-    def get_user(token)
-      user = User.where(token: token)
-      if user == nil
-        user = User.new 
-
-        user.email = params[:email]
-        user.token = token
-
-        User.save(user)
-      end 
-      user
-    end 
-
-    def authenticate(email, password)
-      auth = Eventick::Auth.new
-      auth.email = email
-      auth.password = password
-
-      auth.token
-
-    end 
-
-
 end

@@ -16,6 +16,7 @@
       <tr>
         <td><%= link_to certified.id, certified_path(certified) %></td>
         <td><%= certified.slug %></td>
+        <td><%= image_tag certified.background.url(:thumb) %></td>
         <td><%=l certified.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
