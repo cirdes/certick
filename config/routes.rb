@@ -7,8 +7,12 @@ Certick::Application.routes.draw do
 
   
   
+  resources :generate, only: [:create]
+  get 'generate/:slug' => 'generate#new', :as => "generate_new"
+  get 'generate/result/:slug' => 'generate#show', :as => "result"
 
-  get 'generate/:slug' => 'generate#show'
+
+  
   
 
   # The priority is based upon order of creation: first created -> highest priority.

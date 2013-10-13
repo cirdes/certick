@@ -9,9 +9,8 @@ class SessionsController < ApplicationController
 		token = authenticate(params[:email], params[:password])
 
 		if token != nil 
-			puts "token: #{token}"
-			current_user = get_user(token)
-			
+
+			self.current_user = get_user(token)
 
 			redirect_to certifieds_path, notice: 'Welcome.'
 		else
@@ -22,14 +21,15 @@ class SessionsController < ApplicationController
 	private
 
 	def get_user(token)
-		user = User.where(token: token)
+		
+		user = User.where(token: token).first
 		if user == nil
 			user = User.new 
 
 			user.email = params[:email]
 			user.token = token
 
-			User.save(user)
+			user.save
 		end	
 		user
 	end	

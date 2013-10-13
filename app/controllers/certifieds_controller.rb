@@ -1,3 +1,6 @@
+require 'net/http'
+
+
 class CertifiedsController < ApplicationController
   before_action :set_certified, only: [:show, :edit, :update, :destroy]
 
@@ -22,14 +25,15 @@ class CertifiedsController < ApplicationController
 
     # @events = Eventick::Event.all
 
-    @events = Array.new
-    5.times  do |i|
-      event = Eventick::Event.new
+    # @events = Array.new
+    # 5.times  do |i|
+    #   event = Eventick::Event.new
 
-      event.title = 'teste' + i.to_s
+    #   event.title = 'teste' + i.to_s
 
-      @events << event 
-    end
+    #   @events << event 
+    # end
+    @events = get_events
 
     @certified = Certified.new
     @certified.slug = generate_token
@@ -97,5 +101,16 @@ class CertifiedsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def certified_params
       params.require(:certified).permit(:slug, :background)
+    end
+
+    def get_events
+      result = Net::HTTP.get(URI.parse('https://www.eventick.com.br/api/v1/events.json?u=' + current_user.token))
+      # url = URI.parse('https://www.eventick.com.br/api/v1/events.json?auth_token=' + current_user.token)
+      # req = Net::HTTP::Get.new(url.path)
+
+      # res = Net::HTTP.start(url.host, url.port) {|http|
+      #   http.request(req)
+      # }
+      puts "body: #{result}"
     end
 end

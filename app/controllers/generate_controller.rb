@@ -1,12 +1,39 @@
 class GenerateController < ApplicationController
-	before_action :set_certified, only: [:show]
+	before_action :set_certified, only: [:new, :create, :show]
 	
 
 	# GET /generate/1
   # GET /generate/1.json
-  def show
-  	puts "teste de porpino #{@certified.to_yaml}"
+  def new
+  	
   	@certified 
+  end
+
+	# GET /generate/1
+  # GET /generate/1.json
+  def show
+  	@user = User.where(email: params[:email]).first
+
+    # if @user != nil
+    #   @user
+    # else
+    redirect_to generate_new_url, notice: 'This user does not in roll list of event.'
+    # end
+  end
+
+  # POST /generate
+  # POST /generate.json
+  def create
+    
+    hash = Hash.new 
+    hash[:email] = params[:email]
+    hash[:slug] = params[:slug]
+
+    respond_to do |format|
+
+      format.html { redirect_to result_url(hash), notice: 'Certified was successfully generated.' }
+      
+    end
   end
 
   private

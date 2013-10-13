@@ -1,3 +1,15 @@
 // Place all the styles related to the generate controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+span.result
+{
+   position:absolute;
+   display:block;
+   width:100px;
+   height: 100%;
+   margin: 0 auto;
+   top:340px;
+   left: 200px;
+   font-size: 30px;
+}

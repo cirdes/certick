@@ -1,0 +1,19 @@
+<%= form_tag '/generate', :html => { :class => 'form-horizontal' } do -%>
+
+
+  <%= hidden_field_tag :slug, @certified.slug %>
+  <div class="control-group">
+    <%= label_tag :email %>
+    <div class="controls">
+      <%= text_field_tag :email, nil, :class => 'text_field', :style => 'width: 90%;' %>
+    </div>
+  </div>
+  
+
+  <div class="form-actions">
+    <%= submit_tag 'Generate Certified', :class => 'btn btn-primary'  %>
+    
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                certifieds_path, :class => 'btn' %>
+  </div>
+<% end %>

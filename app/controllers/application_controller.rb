@@ -21,12 +21,11 @@ class ApplicationController < ActionController::Base
   private
     def layout
       # only turn it off for login pages:
-      is_a?(SessionsController) ? "welcome" : "application"
+      is_a?(SessionsController) || is_a?(GenerateController)  ? "welcome" : "application"
       # or turn layout off for every devise controller:
     end
 
     def require_login
-      puts "usuario logado: #{current_user}"
       if !is_a?(SessionsController)
 
         unless current_user
