@@ -12,7 +12,14 @@
       <%= f.file_field :background %>
     </div>
   </div>
+  <div class="control-group">
+    <%= f.label :background, :class => 'control-label' %>
 
+    <div id="uploader" class="controls" >
+      <%= f.select :event_id, @events.map { |p| [ p.title, p.id ] }, { include_blank: true } %>
+    </div>
+  </div>
+  
   <% if @certified.background? %>
     <div class="control-group">
 

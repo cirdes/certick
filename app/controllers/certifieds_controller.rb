@@ -25,15 +25,23 @@ class CertifiedsController < ApplicationController
 
     # @events = Eventick::Event.all
 
-    # @events = Array.new
-    # 5.times  do |i|
-    #   event = Eventick::Event.new
+    # Eventick.auth_token
+    opts = { 
+      basic_auth: {
+        username: current_user.token
+        # password: 'nig231285'
+      }
+    }
+    response = HTTParty.get('https://www.eventick.com.br/api/v1/events.json', opts)
 
-    #   event.title = 'teste' + i.to_s
+    events_response = JSON.parse(response.body)
+    
+    @events = Array.new
+    events_response['events'].map { |r| 
+      event = Eventick::Event.new (r)
+      @events << event
+    }
 
-    #   @events << event 
-    # end
-    @events = get_events
 
     @certified = Certified.new
     @certified.slug = generate_token

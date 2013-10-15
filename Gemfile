@@ -34,7 +34,11 @@ end
 
 gem "twitter-bootstrap-rails"
 
-gem 'eventick_api', git: "https://github.com/lukelex/eventick_api.git"
+# gem 'eventick_api', git: "https://github.com/gporpino/eventick_api.git"
+
+gem 'eventick_api',:path => "~/workspace/eventick_api"
+
+gem 'httparty'
 
 group :development, :test do
 	gem 'rspec-rails', '~> 2.0'

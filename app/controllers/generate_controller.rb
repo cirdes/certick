@@ -12,7 +12,8 @@ class GenerateController < ApplicationController
 	# GET /generate/1
   # GET /generate/1.json
   def show
-  	@user = User.where(email: params[:email]).first
+    # call eventick api to list 
+  	#@user = User.where(email: params[:email]).first
 
     # if @user != nil
     #   @user
