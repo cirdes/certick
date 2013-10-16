@@ -1,5 +1,4 @@
 class Certified < ActiveRecord::Base
-	attr_accessor :event_id
 
 	validates :background, :attachment_presence => true
 

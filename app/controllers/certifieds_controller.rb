@@ -2,6 +2,8 @@
 class CertifiedsController < ApplicationController
   before_action :set_certified, only: [:show, :edit, :update, :destroy]
 
+  before_action :get_events, only: [:new, :edit]
+
   # GET /certifieds
   # GET /certifieds.json
   def index
@@ -15,10 +17,6 @@ class CertifiedsController < ApplicationController
 
   # GET /certifieds/new
   def new
-
-    @events = SimpleEventickApi::Event.all current_user.token
-
-
     @certified = Certified.new
     @certified.slug = generate_token
   end
@@ -30,6 +28,7 @@ class CertifiedsController < ApplicationController
   # POST /certifieds
   # POST /certifieds.json
   def create
+
     @certified = Certified.new(certified_params)
 
     respond_to do |format|
@@ -79,22 +78,16 @@ class CertifiedsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_certified
+      
       @certified = Certified.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def certified_params
-      params.require(:certified).permit(:slug, :background)
+      params.require(:certified).permit(:slug, :background, :event_id)
     end
 
     def get_events
-      result = Net::HTTP.get(URI.parse('https://www.eventick.com.br/api/v1/events.json?u=' + current_user.token))
-      # url = URI.parse('https://www.eventick.com.br/api/v1/events.json?auth_token=' + current_user.token)
-      # req = Net::HTTP::Get.new(url.path)
-
-      # res = Net::HTTP.start(url.host, url.port) {|http|
-      #   http.request(req)
-      # }
-      puts "body: #{result}"
+      @events = SimpleEventickApi::Event.all current_user.token
     end
 end
