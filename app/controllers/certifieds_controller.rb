@@ -1,5 +1,3 @@
-require 'net/http'
-
 
 class CertifiedsController < ApplicationController
   before_action :set_certified, only: [:show, :edit, :update, :destroy]
@@ -18,29 +16,7 @@ class CertifiedsController < ApplicationController
   # GET /certifieds/new
   def new
 
-    # Eventick.config do |c|
-    #   c.email = 'gporpino@gmail.com'
-    #   c.password = 'nig231285'
-    # end
-
-    # @events = Eventick::Event.all
-
-    # Eventick.auth_token
-    opts = { 
-      basic_auth: {
-        username: current_user.token
-        # password: 'nig231285'
-      }
-    }
-    response = HTTParty.get('https://www.eventick.com.br/api/v1/events.json', opts)
-
-    events_response = JSON.parse(response.body)
-    
-    @events = Array.new
-    events_response['events'].map { |r| 
-      event = Eventick::Event.new (r)
-      @events << event
-    }
+    @events = SimpleEventickApi::Event.all current_user.token
 
 
     @certified = Certified.new
