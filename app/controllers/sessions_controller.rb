@@ -35,12 +35,8 @@ class SessionsController < ApplicationController
 	end	
 
 	def authenticate(email, password)
-		auth = Eventick::Auth.new
-		auth.email = email
-		auth.password = password
-
-		auth.token
-
+		 SimpleEventickApi::Auth.authenticate email, password
+		 
 	end	
 
 end
