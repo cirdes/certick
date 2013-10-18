@@ -36,8 +36,8 @@ gem "twitter-bootstrap-rails"
 
 # gem 'eventick_api', git: "https://github.com/gporpino/eventick_api.git"
 
-# gem 'simple_eventick_api'
-gem 'simple_eventick_api', path: "~/workspace/simple_eventick_api"
+gem 'simple_eventick_api'
+# gem 'simple_eventick_api', path: "~/workspace/simple_eventick_api"
 
 gem 'httparty'
 
