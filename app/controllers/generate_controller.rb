@@ -6,20 +6,24 @@ class GenerateController < ApplicationController
   # GET /generate/1.json
   def new
   	
-  	@certified 
+  	@certified
   end
 
 	# GET /generate/1
   # GET /generate/1.json
   def show
-    # call eventick api to list 
-  	#@user = User.where(email: params[:email]).first
+    
+    attendees = SimpleEventickApi::Attendee.all current_user.token, @certified.event_id
+    
+    @attendee = attendees.select { |x| x.email == params[:email] }.first
+    
+    
 
-    # if @user != nil
-    #   @user
-    # else
-    redirect_to generate_new_url, notice: 'This user does not in roll list of event.'
-    # end
+    if @attendee != nil
+      @attendee 
+    else
+      redirect_to generate_new_url, notice: 'This user does not in roll list of event.'
+    end
   end
 
   # POST /generate

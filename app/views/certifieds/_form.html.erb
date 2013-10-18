@@ -2,7 +2,8 @@
   <div class="control-group">
     <%= f.label :slug, :class => 'control-label' %>
     <div class="controls">
-      <%= text_field_tag 'certified[slug]', slug_full_url, :class => 'text_field', :readonly => true, :style => 'width: 90%;' %>
+      <%= f.hidden_field :slug  %>
+      <%= text_field_tag 'certified[slug_full]', slug_full_url, :class => 'text_field', :readonly => true, :style => 'width: 90%;' %>
     </div>
   </div>
 
