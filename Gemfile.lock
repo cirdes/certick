@@ -1,7 +1,7 @@
 PATH
   remote: ~/workspace/simple_eventick_api
   specs:
-    simple_eventick_api (0.0.6)
+    simple_eventick_api (0.0.7)
 
 GEM
   remote: https://rubygems.org/
@@ -32,6 +32,10 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.0)
     atomic (1.1.14)
+    aws-sdk (1.22.1)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4, < 1.6.0)
+      uuidtools (~> 2.1)
     builder (3.1.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -78,6 +82,7 @@ GEM
     minitest (4.7.5)
     multi_json (1.8.2)
     multi_xml (0.5.5)
+    nokogiri (1.5.10)
     paperclip (3.5.1)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -150,11 +155,13 @@ GEM
     uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    uuidtools (2.1.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk
   coffee-rails (~> 4.0.0)
   debugger
   factory_girl_rails (~> 4.0)

@@ -36,8 +36,8 @@ gem "twitter-bootstrap-rails"
 
 # gem 'eventick_api', git: "https://github.com/gporpino/eventick_api.git"
 
-# gem 'simple_eventick_api'
-gem 'simple_eventick_api', path: "~/workspace/simple_eventick_api"
+gem 'simple_eventick_api'
+# gem 'simple_eventick_api', path: "~/workspace/simple_eventick_api"
 
 gem 'httparty'
 
@@ -48,6 +48,8 @@ end
 gem "factory_girl_rails", "~> 4.0"
 
 gem "paperclip", "~> 3.0"
+
+gem 'aws-sdk'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
