@@ -29,16 +29,18 @@ class GenerateController < ApplicationController
   # POST /generate
   # POST /generate.json
   def create
+
+    attendees = SimpleEventickApi::Attendee.all current_user.token, @certified.event_id
     
-    hash = Hash.new 
-    hash[:email] = params[:email]
-    hash[:slug] = params[:slug]
+    @attendee = attendees.select { |x| x.email == params[:email] }.first
 
-    respond_to do |format|
-
-      format.html { redirect_to result_url(hash), notice: 'Certified was successfully generated.' }
-      
+    if @attendee != nil
+      @attendee 
+    else
+      redirect_to generate_new_url, notice: 'This user does not in roll list of event.'
     end
+
+    render 'result' , layout: false
   end
 
   private

@@ -35,6 +35,7 @@ class SessionsController < ApplicationController
 	end	
 
 	def authenticate(email, password)
+		
 		 SimpleEventickApi::Auth.authenticate email, password
 		 
 	end	
