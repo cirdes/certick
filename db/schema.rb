@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131016165535) do
+ActiveRecord::Schema.define(version: 20140713214508) do
 
   create_table "certifieds", force: true do |t|
     t.string   "slug"
@@ -22,6 +22,12 @@ ActiveRecord::Schema.define(version: 20131016165535) do
     t.integer  "background_file_size"
     t.datetime "background_updated_at"
     t.integer  "event_id"
+  end
+
+  create_table "events", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

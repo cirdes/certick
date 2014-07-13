@@ -2,23 +2,25 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:slug) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      
+      <th><%= model_class.human_attribute_name(:url) %></th>
+      <th><%= model_class.human_attribute_name(:event) %></th>
+      <th><%= model_class.human_attribute_name(:thumb) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @certifieds.each do |certified| %>
       <tr>
-        <td><%= link_to certified.id, certified_path(certified) %></td>
-        <td><%= certified.slug %></td>
+        <td><%= link_to slug_full_url(certified), certified_path(certified) %></td>
+        <td><%= certified.event.title %></td>
         <td><%= image_tag certified.background.url(:thumb) %></td>
-        <td><%=l certified.created_at %></td>
         <td>
+
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_certified_path(certified), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

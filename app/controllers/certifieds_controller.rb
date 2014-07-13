@@ -8,17 +8,23 @@ class CertifiedsController < ApplicationController
   # GET /certifieds.json
   def index
     @certifieds = Certified.all
+    @certifieds.each { |c| 
+      c.event = find_event c.event_id
+    }
   end
 
   # GET /certifieds/1
   # GET /certifieds/1.json
   def show
+
+    @certified.event = find_event @certified.event_id
+
+    
   end
 
   # GET /certifieds/new
   def new
     @certified = Certified.new
-    @certified.slug = generate_token
   end
 
   # GET /certifieds/1/edit
@@ -30,13 +36,17 @@ class CertifiedsController < ApplicationController
   def create
 
     @certified = Certified.new(certified_params)
+    @certified.slug = generate_token
 
     respond_to do |format|
       if @certified.save
         format.html { redirect_to @certified, notice: 'Certified was successfully created.' }
         format.json { render action: 'show', status: :created, location: @certified }
       else
-        format.html { render action: 'new' }
+        format.html { 
+          get_events
+          render action: 'new' 
+        }
         format.json { render json: @certified.errors, status: :unprocessable_entity }
       end
     end
@@ -84,10 +94,14 @@ class CertifiedsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def certified_params
-      params.require(:certified).permit(:slug, :background, :event_id)
+      params.require(:certified).permit( :background, :event_id)
     end
 
     def get_events
       @events = SimpleEventickApi::Event.all current_user.token
+    end
+
+    def find_event id
+      SimpleEventickApi::Event.find current_user.token, id
     end
 end

@@ -1,8 +1,9 @@
 module CertifiedsHelper
-	def slug_full_url
-		root_url + "generate/#{@certified.slug}"
-	end
 
+	def slug_full_url certified
+		root_url + "generate/#{certified.slug}"
+	end
+	
 	protected
 
     def generate_token

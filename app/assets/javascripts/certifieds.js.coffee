@@ -3,6 +3,12 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
+jQuery ->
+
+	$('.close').click () ->
+  	$('#uploader-image').css 'display','none'
+  	$('#uploader').css 'display',''
+  	return
 
 
 

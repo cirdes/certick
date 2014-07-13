@@ -2,3 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+
+#uploader-image {
+	position: relative;
+	display: inline-block;
+}
+
+#uploader-image .close {
+    position: absolute;
+    top: 1px;
+    right: 3px;
+    z-index: 100;
+}
+
+

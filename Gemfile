@@ -36,8 +36,8 @@ gem "twitter-bootstrap-rails"
 
 # gem 'eventick_api', git: "https://github.com/gporpino/eventick_api.git"
 
-gem 'simple_eventick_api'
-# gem 'simple_eventick_api', path: "~/workspace/simple_eventick_api"
+#gem 'simple_eventick_api'
+gem 'simple_eventick_api', path: "~/workspace/simple_eventick_api"
 
 gem 'httparty'
 
@@ -51,6 +51,7 @@ gem "paperclip", "~> 3.0"
 
 gem 'aws-sdk'
 
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -61,4 +62,4 @@ gem 'aws-sdk'
 # gem 'capistrano', group: :development
 
 # Use debugger
-gem 'debugger', group: [:development, :test]
+#gem 'debugger', group: [:development, :test]

@@ -35,12 +35,10 @@ class GenerateController < ApplicationController
     @attendee = attendees.select { |x| x.email == params[:email] }.first
 
     if @attendee != nil
-      @attendee 
-    else
-      redirect_to generate_new_url, notice: 'This user does not in roll list of event.'
+      render 'result' , layout: false
+    elsif
+      redirect_to generate_new_url(params), notice: 'This user does not in roll list of event.'
     end
-
-    render 'result' , layout: false
   end
 
   private
