@@ -4,7 +4,13 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+group :development, :test do
+	gem 'sqlite3'
+end
+
+group :production do
+	gem 'pg'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -34,10 +40,10 @@ end
 
 gem "twitter-bootstrap-rails"
 
-# gem 'eventick_api', git: "https://github.com/gporpino/eventick_api.git"
 
-#gem 'simple_eventick_api'
-gem 'simple_eventick_api', path: "~/workspace/simple_eventick_api"
+
+gem 'simple_eventick_api'
+
 
 gem 'httparty'
 
