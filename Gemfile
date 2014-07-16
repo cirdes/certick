@@ -31,7 +31,7 @@ group :doc do
 	gem 'sdoc', require: false
 end
 
-gem "twitter-bootstrap-rails", :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem "twitter-bootstrap-rails"
 
 gem 'simple_eventick_api'
 #gem  'simple_eventick_api', :path => '~/workspace/simple_eventick_api' , group: [:development, :test]
