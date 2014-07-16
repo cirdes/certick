@@ -1,3 +1,9 @@
+PATH
+  remote: ~/workspace/simple_eventick_api
+  specs:
+    simple_eventick_api (0.0.8)
+      httparty
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -123,8 +129,6 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
-    simple_eventick_api (0.0.8)
-      httparty
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -171,7 +175,7 @@ DEPENDENCIES
   rspec-rails (~> 2.0)
   sass-rails (~> 4.0.0)
   sdoc
-  simple_eventick_api
+  simple_eventick_api!
   turbolinks
   twitter-bootstrap-rails
   uglifier (>= 1.3.0)

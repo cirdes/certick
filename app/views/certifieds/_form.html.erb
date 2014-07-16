@@ -4,7 +4,8 @@
     <%= f.label :event, :class => 'control-label' %>
 
     <div class="controls" >
-      <%= f.select :event_id, @events.map { |p| [ p.title, p.id ] }, { include_blank: true } %>
+      <%= @certified.event.title if edit %>
+      <%= f.select :event_id, @events.map { |p| [ p.title, p.id ] }, { include_blank: true } unless edit %>
     </div>
   </div>
 

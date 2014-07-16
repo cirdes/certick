@@ -2,7 +2,7 @@
 class CertifiedsController < ApplicationController
   before_action :set_certified, only: [:show, :edit, :update, :destroy]
 
-  before_action :get_events, only: [:new, :edit]
+  before_action :get_events, only: [:new]
 
   # GET /certifieds
   # GET /certifieds.json
@@ -31,10 +31,20 @@ class CertifiedsController < ApplicationController
   # GET /certifieds/new
   def new
     @certified = Certified.new
+
+    certifieds = Certified.where(:user => current_user)
+
+    certifieds.each { |c| 
+      event = @events.select { |e| e.id == c.event_id }.first
+      @events.delete event if event != nil 
+    }
+
+    redirect_to certifieds_url, notice: "No events available to add a background. All your events already have background set." if @events.count == 0
   end
 
   # GET /certifieds/1/edit
   def edit
+    @certified.event = find_event @certified.event_id
   end
 
   # POST /certifieds
@@ -105,8 +115,7 @@ class CertifiedsController < ApplicationController
     end
 
     def get_events
-
-      @events = SimpleEventickApi::Event.all current_user.token if current_user != nil
+      @events = SimpleEventickApi::Event.all current_user.token 
     end
 
     def find_event id
