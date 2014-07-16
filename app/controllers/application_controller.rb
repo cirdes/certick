@@ -9,8 +9,12 @@ class ApplicationController < ActionController::Base
   layout :layout
 
   def logout
+    logger.info "logout - init"
+
     self.current_user = nil
     redirect_to root_path
+
+    logger.info "logout - done"
   end
 
   def current_user
@@ -24,7 +28,11 @@ class ApplicationController < ActionController::Base
   private
     def is_logged
 
+      logger.info "check if user is logged."
+
       redirect_to certifieds_path if current_user and is_a? SessionsController
+
+      logger.info "redirect to certified index if user logged." if current_user and is_a? SessionsController
     end
 
     def layout
@@ -34,9 +42,12 @@ class ApplicationController < ActionController::Base
     end
 
     def require_login
-      if !is_a?(SessionsController)
+      logger.info "check if controller need login."
 
+      if !is_a?(SessionsController)
+        logger.info "is not a sessions controler." 
         unless current_user
+          logger.info "redirect to root due to current user is nil."
           redirect_to root_path
         end
       end

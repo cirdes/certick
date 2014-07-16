@@ -4,11 +4,6 @@ class SessionsController < ApplicationController
 		 @user = User.new
 	end
 
-	def destroy
-    self.current_user = nil
-    redirect_to root_path
-  end
-
 	def create
 		
 		token = authenticate(params[:email], params[:password])
