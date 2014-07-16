@@ -34,7 +34,7 @@ end
 gem "twitter-bootstrap-rails"
 
 gem 'simple_eventick_api', group: [:production]
-#gem  'simple_eventick_api', :path => '~/workspace/simple_eventick_api' , group: [:development, :test]
+
 
 gem 'httparty'
 
