@@ -31,6 +31,8 @@ test:
 
 production:
   adapter: postgresql
-  host: localhost
-  username: certick-app
+  encoding: unicode
   database: certick-production
+  host: localhost
+  username:
+  password:
