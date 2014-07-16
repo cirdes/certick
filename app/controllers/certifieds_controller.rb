@@ -8,7 +8,12 @@ class CertifiedsController < ApplicationController
   # GET /certifieds.json
   def index
 
+    logger.info "get own certifieds."
+
     @certifieds = Certified.where(user: self.current_user)
+
+    logger.info "consuming certifieds event from api."
+
     @certifieds.each { |c| 
       c.event = find_event c.event_id
     }
