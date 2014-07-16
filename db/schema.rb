@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140713214508) do
+ActiveRecord::Schema.define(version: 20140715234731) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "certifieds", force: true do |t|
     t.string   "slug"
@@ -22,13 +25,10 @@ ActiveRecord::Schema.define(version: 20140713214508) do
     t.integer  "background_file_size"
     t.datetime "background_updated_at"
     t.integer  "event_id"
+    t.integer  "user_id"
   end
 
-  create_table "events", force: true do |t|
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "certifieds", ["user_id"], name: "index_certifieds_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"

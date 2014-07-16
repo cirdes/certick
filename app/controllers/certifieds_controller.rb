@@ -7,7 +7,7 @@ class CertifiedsController < ApplicationController
   # GET /certifieds
   # GET /certifieds.json
   def index
-    @certifieds = Certified.all
+    @certifieds = Certified.where(user: self.current_user)
     @certifieds.each { |c| 
       c.event = find_event c.event_id
     }
@@ -37,6 +37,7 @@ class CertifiedsController < ApplicationController
 
     @certified = Certified.new(certified_params)
     @certified.slug = generate_token
+    @certified.user = self.current_user
 
     respond_to do |format|
       if @certified.save
@@ -98,7 +99,8 @@ class CertifiedsController < ApplicationController
     end
 
     def get_events
-      @events = SimpleEventickApi::Event.all current_user.token
+      
+      @events = SimpleEventickApi::Event.all current_user.token if current_user != nil
     end
 
     def find_event id

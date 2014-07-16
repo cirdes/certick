@@ -4,6 +4,7 @@ Certick::Application.routes.draw do
 
   root 'sessions#new'
   resources :sessions, only: [:new, :create]
+  get 'exit', to: 'sessions#logout', as: :logout
 
   
   

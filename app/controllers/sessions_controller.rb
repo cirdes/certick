@@ -4,6 +4,11 @@ class SessionsController < ApplicationController
 		 @user = User.new
 	end
 
+	def destroy
+    self.current_user = nil
+    redirect_to root_path
+  end
+
 	def create
 		
 		token = authenticate(params[:email], params[:password])
@@ -21,18 +26,20 @@ class SessionsController < ApplicationController
 	private
 
 	def get_user(token)
-		
 		user = User.where(token: token).first
-		if user == nil
-			user = User.new 
 
+		update = true if user == nil
+
+		user = User.where(email: params[:email]).first if user == nil
+		user = User.new if user == nil
+
+		if update
 			user.email = params[:email]
 			user.token = token
-
 			user.save
 		end	
 		user
-	end	
+	end
 
 	def authenticate(email, password)
 		
