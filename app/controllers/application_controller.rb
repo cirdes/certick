@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :is_logged, :require_login, :except => [:logout]
+  before_filter :require_login, :charge_current_user, :except => [:logout]
 
   layout :layout
 
@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 
       logger.info "check if user is logged."
 
-      redirect_to certifieds_path if current_user and is_a? SessionsController
+      
 
       logger.info "redirect to certified index if user logged." if current_user and is_a? SessionsController
     end
@@ -44,12 +44,17 @@ class ApplicationController < ActionController::Base
     def require_login
       logger.info "check if controller need login."
 
-      if !is_a?(SessionsController)
+      if !is_a?(SessionsController) && !is_a?(GenerateController) 
         logger.info "is not a sessions controler." 
-        unless current_user
-          logger.info "redirect to root due to current user is nil."
-          redirect_to root_path
-        end
+        
+        logger.info "redirect to root due to current user is nil." unless current_user
+        redirect_to root_path unless current_user
       end
+
+      redirect_to certifieds_path if current_user and is_a? SessionsController
+    end
+
+    def charge_current_user
+      @current_user = current_user
     end
 end
