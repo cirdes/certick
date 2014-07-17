@@ -21,3 +21,16 @@
 	margin-top:-5px;
 	
 }
+
+.container-fluid.welcome{
+	margin-right: 200px;
+	margin-left: 200px;
+}
+
+.btn.generate{
+	float: right;
+}
+
+.form-actions{
+	border: 1px solid #e5e5e5;
+}

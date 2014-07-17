@@ -5,14 +5,13 @@ class GenerateController < ApplicationController
 	# GET /generate/1
   # GET /generate/1.json
   def new
-  	
   	@certified
+    @certified.event = find_event @certified.event_id
   end
 
   # POST /generate
   # POST /generate.json
   def create
-
     logger.info "Token for user #{@certified.user.email}: #{@certified.user.token}"
 
     attendees = SimpleEventickApi::Attendee.all @certified.user.token, @certified.event_id
@@ -37,6 +36,10 @@ class GenerateController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def certified_params
       params.require(:certified).permit(:slug, :background)
+    end
+
+    def find_event id
+      SimpleEventickApi::Event.find current_user.token, id
     end
 
 end

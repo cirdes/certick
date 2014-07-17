@@ -3,19 +3,19 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %> do <%= @certified.event.title %></h1>
 </div>
 
-
-
 <div class="well clip" >
   <span id="slug_span"><%= slug_full_url(@certified.slug) %></span>
-  
 </div>  
 
-<button id='clip_button' class='btn' 
-		data-clipboard-target='slug_span' 
-		title='Click me to copy to clipboard.'>
-
-    <%= image_tag image_path "copy_26x26.png" %>
+<button id='clip_button' class='btn show' data-clipboard-target='slug_span' title='Click me to copy to clipboard.'>
+    <%= image_tag image_path "copy_32x32.png" %>
 </button>
+
+<a href="<%= slug_full_url(@certified.slug) %>" target="_blank">
+  <button class='btn show' title='Go to public url.'>
+    <%= image_tag image_path "out_32x32.png" %>
+  </button>
+</a>
 
 <div class="clear"></div>
 
