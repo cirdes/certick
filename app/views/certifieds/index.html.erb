@@ -6,9 +6,9 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      
-      <th><%= model_class.human_attribute_name(:url) %></th>
       <th><%= model_class.human_attribute_name(:event) %></th>
+      <th><%= model_class.human_attribute_name(:url) %></th>
+      
       <th><%= model_class.human_attribute_name(:thumb) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -16,8 +16,9 @@
   <tbody>
     <% @certifieds.each do |certified| %>
       <tr>
-        <td><%= link_to slug_full_url(certified), certified_path(certified) %></td>
-        <td><%= certified.event.title %></td>
+        <td><%= link_to certified.event.title, certified_path(certified) %></td>
+        <td><%= slug_full_url(certified.slug) %><%= link_to image_tag(image_path "out-silver.png"), slug_full_url(certified.slug) , style: "margin-left: 10px;", target: "_blank" %></td>
+        
         <td><%= image_tag certified.background.url(:thumb) %></td>
         <td>
 
