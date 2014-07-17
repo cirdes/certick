@@ -50,8 +50,11 @@
            <%= image_tag image_path("logo_24x24.png"), :class => 'logo' %>
            Certick</a>
           <div class="container-fluid nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "User: #{@current_user.email}", "#" %></li>
+            <ul class="nav" style="float:left;">
+              <li><%= link_to "Meus certificados", certifieds_path %></li>
+            </ul>
+            <ul class="nav"  style="float:right;">
+              <li class="no-link">User: <%= @current_user.email%></li>
               <li><%= link_to "Logout", logout_path  %></li>
             </ul>
           </div><!--/.nav-collapse -->
