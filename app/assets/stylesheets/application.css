@@ -12,13 +12,12 @@
  *= require_tree .
  */
 
-a {
-  color: #000;
-  &:visited {
-    color: #666;
-  }
- &:hover {
-    color: #fff;
-    background-color: #000;
-  }  
+.template.thumb{
+	border: 1px solid #e3e3e3;
+}
+
+.logo{
+	position: relative;
+	margin-top:-5px;
+	
 }

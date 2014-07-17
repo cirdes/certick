@@ -1,6 +1,6 @@
 
 class CertifiedsController < ApplicationController
-  before_action :set_certified, only: [:show, :edit, :update, :destroy]
+  before_action :set_certified, only: [:show, :update, :destroy]
 
   before_action :get_events, only: [:new]
 
@@ -40,11 +40,6 @@ class CertifiedsController < ApplicationController
     }
 
     redirect_to certifieds_url, notice: "No events available to add a background. All your events already have background set." if @events.count == 0
-  end
-
-  # GET /certifieds/1/edit
-  def edit
-    @certified.event = find_event @certified.event_id
   end
 
   # POST /certifieds

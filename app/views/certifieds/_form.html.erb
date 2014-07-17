@@ -10,32 +10,13 @@
   </div>
 
   <div class="control-group">
-    
     <%= f.label :background, :class => 'control-label' %>
-    <div id="uploader" class="controls" <%= "style=display:none;" if @certified.background?  %> >
-      
+    <div id="uploader" class="controls" >
       <%= f.file_field :background, :class => 'upload' %>
     </div>
-  
-    <% if @certified.background? %>
-      
-
-        <div id='uploader-image' class="controls images ">
-          <span class="close">&times;</span>
-          <%= image_tag @certified.background.url(:medium) %>
-        </div>
-      
-    <% end %>
   </div>
-
-
-
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t(:cancel, :default => t("helpers.links.cancel")),
-                certifieds_path, :class => 'btn' %>
-    <%= link_to t(:template),
-                image_path("templates/certick_template_background_001.png"), :class => 'btn', download: "certick_template_background.png" %>            
-    
+    <%= link_to t(:cancel, :default => t("helpers.links.cancel")), certifieds_path, :class => 'btn' %>
   </div>
 <% end %>

@@ -48,6 +48,8 @@ gem "paperclip", "~> 3.0"
 
 gem 'aws-sdk'
 
+gem 'zeroclipboard-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

@@ -17,13 +17,10 @@
     <% @certifieds.each do |certified| %>
       <tr>
         <td><%= link_to certified.event.title, certified_path(certified) %></td>
-        <td><%= slug_full_url(certified.slug) %><%= link_to image_tag(image_path "out-silver.png"), slug_full_url(certified.slug) , style: "margin-left: 10px;", target: "_blank" %></td>
+        <td><%= slug_full_url(certified.slug) %><%= link_to image_tag(image_path "out_16x16.png"), slug_full_url(certified.slug) , :class => 'out', target: "_blank" %></td>
         
         <td><%= image_tag certified.background.url(:thumb) %></td>
         <td>
-
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_certified_path(certified), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       certified_path(certified),
                       :method => :delete,

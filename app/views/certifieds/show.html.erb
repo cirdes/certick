@@ -1,23 +1,40 @@
 <%- model_class = Certified -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %> do <%= @certified.event.title %></h1>
 </div>
 
-<div>
 
-    <strong style="color:#AA7570; font-size:large;text-align:center" >
-      Your event now have a certificate. <br/>
-      Please share this link bellow with the attendee of event '<%= @certified.event.title %>'. <br/>
-      To generate each attendee must to acesse this link and enter the email. 
-    </strong>
-</div>
-<div class="well" style="margin-top:20px;">
-  <strong style='color:#A5C5AF;'> <%= slug_full_url(@certified) %> </strong>
+
+<div class="well clip" >
+  <span id="slug_span"><%= slug_full_url(@certified.slug) %></span>
+  
 </div>  
 
+<button id='clip_button' class='btn' 
+		data-clipboard-target='slug_span' 
+		title='Click me to copy to clipboard.'>
+
+    <%= image_tag image_path "copy_26x26.png" %>
+</button>
+
+<div class="clear"></div>
+
+<div class="control-group">
+	Preview:
+</div>
+
+<div class="well" >
+  <%= image_tag @certified.background %>
+</div>  
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               certifieds_path, :class => 'btn'  %>
   
 </div>
+
+<script>
+  $(document).ready(function() {
+    var clip = new ZeroClipboard($("#clip_button"))
+  });
+</script>

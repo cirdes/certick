@@ -2,18 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-
-#uploader-image {
-	position: relative;
-	display: inline-block;
+#clip_button {
+	float: right;
+	height: 60px;
+	width: 7%
 }
 
-#uploader-image .close {
-    position: absolute;
-    top: 1px;
-    right: 3px;
-    z-index: 100;
+.clip{
+	float:left;
+	width: 87%;
 }
 
+.clear{
+	clear: both;
+}
 
+.out {
+	margin-left: 5px;
+}

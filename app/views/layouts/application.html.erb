@@ -46,7 +46,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/">Certick</a>
+          <a class="brand" href="/">
+           <%= image_tag image_path("logo_24x24.png"), :class => 'logo' %>
+           Certick</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
               <li><%= link_to "User: #{@current_user.email}", "#" %></li>
@@ -64,10 +66,24 @@
             <ul class="nav nav-list">
               <li class="nav-header">Just 3 steps</li>
               <li>Create a certified</li>
-              <li>Upload an image</li>
+              <li>Upload an background image</li>
               <li>Share!</li>
             </ul>
           </div><!--/.well -->
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Template</li>
+              <li>Preparamos um template com todas as medidas para você não ter dor de cabeça!</li>
+              <li>&nbsp;</li>
+              <li><%= image_tag image_path("templates/certick_template_background_001.medium.png"), :class => 'template thumb' %></li>
+              <li>&nbsp;</li>
+              <li>Entregue a seu designer e seja feliz!</li>
+              <li>&nbsp;</li>
+              <li>
+                <%= link_to t(:template), image_path("templates/certick_template_background_001.png"), :class => 'btn', download: "certick_template_background.png" %>
+              </li>
+            </ul>
+          </div>
         </div><!--/span-->
         <div class="span9">
           <%= bootstrap_flash %>
