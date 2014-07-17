@@ -1,19 +1,29 @@
 
-  <style>
-  span.result
-{
-   position:relative;
-   display:block;
-   font-size: 30px;
-   margin-top: -445px;
-}
-  </style>
+<style>
+  body {
+    margin: 0;
+  }
+  .result .name {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    height: 50px;
 
-  <center>
-    <%= image_tag @certified.background.url %>
-    <span class="result"><%= @attendee .name %></span>
-  
-  </center>
+    font-size: 30pt;
+    top: 320px;
+    vertical-align: center; 
+
+    background-color: red;
+    opacity: 0.5;
+  }
+</style>
+
+<center class="result">
+  <span class="name"><%= @attendee .name %></span>
+  <%= image_tag @certified.background.url, :class => 'image' %>
+</center>
 
 
 
