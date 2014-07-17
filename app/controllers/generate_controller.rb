@@ -13,7 +13,7 @@ class GenerateController < ApplicationController
   # GET /generate/1.json
   def show
     
-    attendees = SimpleEventickApi::Attendee.all current_user.token, @certified.event_id
+    attendees = SimpleEventickApi::Attendee.all @certified.user.token, @certified.event_id
     
     @attendee = attendees.select { |x| x.email == params[:email] }.first
     
