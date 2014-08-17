@@ -1,15 +1,18 @@
 source 'https://rubygems.org'
 
+ruby '2.1.1'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.1.4'
 
 gem 'pg'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.3'
+gem 'compass-rails'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '~> 1.3.0'
+gem 'uglifier', '~> 2.5.3'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
@@ -24,14 +27,14 @@ gem 'jquery-rails', '~> 3.1.1'
 gem 'turbolinks', '~> 2.2.2'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 2.1.3'
 
 group :doc do
 	# bundle exec rake doc:rails generates the API under doc/api.
 	gem 'sdoc', require: false
 end
 
-gem "twitter-bootstrap-rails", '~> 2.2.8'
+gem "twitter-bootstrap-rails", '~> 3.2.0'
 
 gem 'simple_eventick_api', '~> 0.0.9'
 #gem  'simple_eventick_api', :path => '~/workspace/simple_eventick_api' , group: [:development, :test]
@@ -45,9 +48,9 @@ end
 
 gem "factory_girl_rails", "~> 4.0"
 
-gem "paperclip", "~> 3.0"
+gem "paperclip", "~> 4.2.0"
 
-gem 'aws-sdk', '~> 1.47.0'
+gem 'aws-sdk', '~> 1.51.0'
 
 gem 'zeroclipboard-rails', '~> 0.1.0'
 

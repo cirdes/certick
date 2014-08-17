@@ -37,36 +37,17 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body>
-
-    <div class="navbar navbar-fluid-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="/">
-           <%= image_tag image_path("logo_24x24.png"), :class => 'logo' %>
-           Certick</a>
-          
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Certick</a>
         </div>
       </div>
-    </div>
+    </nav>
 
-    <div class="container-fluid welcome">
-      <div class="row-fluid ">
-        
-          <%= bootstrap_flash %>
-          <%= yield %>
-        
-      </div><!--/row-->
-
-      <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
-
-    </div> <!-- /container -->
+    <%= bootstrap_flash %>
+    <%= yield %>
 
   </body>
 </html>
