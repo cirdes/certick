@@ -5,7 +5,7 @@
 
 <div class="well clip" >
   <span id="slug_span"><%= slug_full_url(@certified.slug) %></span>
-</div>  
+</div>
 
 <button id='clip_button' class='btn show' data-clipboard-target='slug_span' title='Click me to copy to clipboard.'>
     <%= image_tag image_path "copy_32x32.png" %>
@@ -32,7 +32,7 @@
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               certifieds_path, :class => 'btn'  %>
-  
+
 </div>
 
 <script>

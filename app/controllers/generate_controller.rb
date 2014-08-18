@@ -1,6 +1,6 @@
 class GenerateController < ApplicationController
 	before_action :set_certified, only: [:new, :create, :show]
-	
+
 
 	# GET /generate/1
   # GET /generate/1.json
@@ -12,10 +12,10 @@ class GenerateController < ApplicationController
   # POST /generate
   # POST /generate.json
   def create
-    logger.info "Token for user #{@certified.user.email}: #{@certified.user.token}"
+    #logger.info "Token for user #{@certified.user.email}: #{@certified.user.token}"
 
     attendees = SimpleEventickApi::Attendee.all @certified.user.token, @certified.event_id
-    
+
     @attendee = attendees.select { |x| x.email == params[:email] }.first
 
     if @attendee != nil
@@ -41,5 +41,4 @@ class GenerateController < ApplicationController
     def find_event id
       SimpleEventickApi::Event.find current_user.token, id
     end
-
 end

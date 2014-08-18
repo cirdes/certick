@@ -1,23 +1,15 @@
-<%= form_tag '/generate', :method => :post, :html => { :class => 'form-horizontal' } do -%>
-
-  
+<%= form_tag '/generate', :method => :post do %>
   <%= hidden_field_tag :slug, @certified.slug %>
-  <div class="control-group" >
+  <div class="form-group" >
     <h2>Seu certificado está aguardando você!</h2>
-
     <h5>Digite seu email cadastrado no eventick e clique em gerar certificado.</h5>
   </div>
   <br/>
 
-  <div class="control-group">
+  <div class="form-group">
     <%= label_tag :email %>
-    <div class="controls">
-      <%= text_field_tag :email, nil, :class => 'text_field', :style => 'width: 60%;' %>
-    </div>
+    <%= text_field_tag :email, nil, :class => 'form-control'%>
   </div>
-  
 
-  <div class="form-actions">
-    <%= submit_tag 'Gerar Certificado', :class => 'btn btn-primary generate'  %>
-  </div>
+  <%= submit_tag 'Gerar Certificado', :class => 'btn btn-primary'%>
 <% end %>

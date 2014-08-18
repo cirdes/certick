@@ -1,22 +1,23 @@
-<%= form_for @certified, :html => { :class => 'form-horizontal' } do |f| %>
-  
-  <div class="control-group">
-    <%= f.label :event_id, :class => 'control-label' %>
-
-    <div class="controls" >
-      <%= f.select :event_id, @events.map { |p| [ p.title, p.id ] }, { include_blank: true }%>
-    </div>
+<%= form_for @certified, html: { role: 'form', multipart: true } do |f| %>
+  <div class="from-group">
+    <%= f.label :event %>
+    <% if edit %>
+      <%= @certified.event.title %>
+    <% else %>
+      <%= f.select :event_id, @events.map { |p| [ p.title, p.id ] }, { include_blank: true }, { class: 'form-control'} %>
+    <% end %>
   </div>
 
-  <div class="control-group">
-    <%= f.label :background_url, :class => 'control-label' %>
-    
-    <div class="controls" >
-      <%= f.hidden_field :background_url, role: "uploadcare-uploader", 'data-preview-step' => "false", 'data-images-only' => "true", 'data-crop'=> "1024x768 minimum", 'data-clearable' => "true" %>
-    </div>
+  <div class="form-group">
+    <%= f.label :background_url  %>
+    <%= f.hidden_field :background_url, role: "uploadcare-uploader", 'data-preview-step' => "false", 'data-images-only' => "true", 'data-crop'=> "1024x768 minimum", 'data-clearable' => "true" %>
+
   </div>
-  <div class="form-actions">
-    <%= f.submit 'Salvar Certificado', :class => 'btn btn-primary' %>
-    <%= link_to t(:cancel, :default => t("helpers.links.cancel")), certifieds_path, :class => 'btn' %>
-  </div>
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t(:cancel, :default => t("helpers.links.cancel")), certifieds_path, class: 'btn btn-danger' %>
 <% end %>
+
+
+<h2>Template da imagem</h2>
+<%= image_tag("templates/certick_template_background_001.png") %>

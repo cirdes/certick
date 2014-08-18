@@ -38,69 +38,43 @@
   </head>
   <body>
 
-    <div class="navbar navbar-fluid-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="/">
-           <%= image_tag image_path("logo_24x24.png"), :class => 'logo' %>
-           Certick</a>
-          <div class="container-fluid nav-collapse">
-            <ul class="nav" style="float:left;">
-              <li><%= link_to "Meus certificados", certifieds_path %></li>
-            </ul>
-            <ul class="nav"  style="float:right;">
-              <li class="no-link">User: <%= @current_user.email%></li>
-              <li><%= link_to "Logout", logout_path  %></li>
-            </ul>
-          </div><!--/.nav-collapse -->
+  <nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Certick</a>
         </div>
       </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Meus certificados", certifieds_path %></li>
+        </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class='navbar-text'> User: <%= @current_user.email%></li>
+          <li><%= link_to "Logout", logout_path  %></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
     </div>
+  </nav>
 
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Just 3 steps</li>
-              <li>Create a certified</li>
-              <li>Upload an background image</li>
-              <li>Share!</li>
-            </ul>
-          </div><!--/.well -->
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Template</li>
-              <li>Preparamos um template com todas as medidas para você não ter dor de cabeça!</li>
-              <li>&nbsp;</li>
-              <li><%= image_tag image_path("templates/certick_template_background_001.medium.png"), :class => 'template thumb' %></li>
-              <li>&nbsp;</li>
-              <li>Entregue a seu designer e seja feliz!</li>
-              <li>&nbsp;</li>
-              <li>
-                <%= link_to t(:template), image_path("templates/certick_template_background_001.png"), :class => 'btn', download: "certick_template_background.png" %>
-              </li>
-            </ul>
-          </div>
-        </div><!--/span-->
-        <div class="span9">
-          
-          <%= bootstrap_flash %>
+  <div class="container">
+    <div class="row">
+      <%= bootstrap_flash %>
+      <%= yield %>
+    </div><!--/row-->
+  </div> <!-- /container -->
 
-          <%= yield %>
-        </div>
-      </div><!--/row-->
-
-      <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
-
-    </div> <!-- /container -->
+  <div class="footer">
+    <div class="container">
+      <p class="text-muted">By Gustavo Porpino</p>
+    </div>
+  </div>
 
   </body>
   <script>
