@@ -23,9 +23,11 @@
 	Preview:
 </div>
 
-<div class="well" >
-  <%= image_tag @certified.background %>
+<div class="well" style="float:left;">
+  <%= image_tag @certified.background_url.resize(:large)  %>
 </div>  
+
+<div class="clear"></div>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

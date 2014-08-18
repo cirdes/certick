@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715234731) do
+ActiveRecord::Schema.define(version: 20140719141222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,12 +20,9 @@ ActiveRecord::Schema.define(version: 20140715234731) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "background_file_name"
-    t.string   "background_content_type"
-    t.integer  "background_file_size"
-    t.datetime "background_updated_at"
     t.integer  "event_id"
     t.integer  "user_id"
+    t.string   "background_url"
   end
 
   add_index "certifieds", ["user_id"], name: "index_certifieds_on_user_id", using: :btree

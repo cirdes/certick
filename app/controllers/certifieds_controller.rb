@@ -1,8 +1,8 @@
 
 class CertifiedsController < ApplicationController
-  before_action :set_certified, only: [:show, :update, :destroy]
+  before_action :set_certified, only: [:show, :edit, :update, :destroy]
 
-  before_action :get_events, only: [:new]
+  before_action :get_events, only: [:new, :edit]
 
   # GET /certifieds
   # GET /certifieds.json
@@ -26,6 +26,11 @@ class CertifiedsController < ApplicationController
     @certified.event = find_event @certified.event_id
 
     
+  end
+
+  # GET /certifieds/1/edit
+  def edit
+    @certified.event = find_event @certified.event_id
   end
 
   # GET /certifieds/new
@@ -57,7 +62,8 @@ class CertifiedsController < ApplicationController
       else
         format.html { 
           get_events
-          render action: 'new' 
+
+          redirect_to action: 'new' 
         }
         format.json { render json: @certified.errors, status: :unprocessable_entity }
       end
@@ -68,11 +74,16 @@ class CertifiedsController < ApplicationController
   # PATCH/PUT /certifieds/1.json
   def update
     respond_to do |format|
+      @certified.background_url = params[:background_url]
+
       if @certified.update(certified_params)
         format.html { redirect_to @certified, notice: 'Certified was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { 
+          get_events
+          render action: 'edit', alert: @certified.errors.to_a
+        }
         format.json { render json: @certified.errors, status: :unprocessable_entity }
       end
     end
@@ -106,7 +117,7 @@ class CertifiedsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def certified_params
-      params.require(:certified).permit( :background, :event_id)
+      params.require(:certified).permit( :background_url, :event_id)
     end
 
     def get_events
@@ -116,4 +127,5 @@ class CertifiedsController < ApplicationController
     def find_event id
       SimpleEventickApi::Event.find current_user.token, id
     end
+    
 end

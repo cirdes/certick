@@ -44,10 +44,9 @@ pt:
     attributes:
       certified:
         slug: "Slug"
-        event: "Evento"
-        background: "Imagem de Fundo"
+        event_id: "Evento"
+        background_url: "Imagem de Fundo"
         thumb: "Miniatura"
-
     errors:
       template:
         header:
@@ -57,6 +56,10 @@ pt:
       models:
         certified:
           attributes:
-            event:
-              blank: "O campo evento deve ser preenchido"
+            blank: "deve ser preenchido"
+            event_id:
+              blank: "deve ser preenchido"
+            background_url:
+              blank: "não pode ficar em branco"  
+              
 

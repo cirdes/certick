@@ -1,6 +1,6 @@
 Certick::Application.routes.draw do
 
-  resources :certifieds, except: [:edit]
+  resources :certifieds
 
   root 'sessions#new'
   resources :sessions, only: [:new, :create]

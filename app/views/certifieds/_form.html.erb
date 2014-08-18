@@ -1,22 +1,22 @@
 <%= form_for @certified, :html => { :class => 'form-horizontal' } do |f| %>
   
   <div class="control-group">
-    <%= f.label :event, :class => 'control-label' %>
+    <%= f.label :event_id, :class => 'control-label' %>
 
     <div class="controls" >
-      <%= @certified.event.title if edit %>
-      <%= f.select :event_id, @events.map { |p| [ p.title, p.id ] }, { include_blank: true } unless edit %>
+      <%= f.select :event_id, @events.map { |p| [ p.title, p.id ] }, { include_blank: true }%>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :background, :class => 'control-label' %>
-    <div id="uploader" class="controls" >
-      <%= f.file_field :background, :class => 'upload' %>
+    <%= f.label :background_url, :class => 'control-label' %>
+    
+    <div class="controls" >
+      <%= f.hidden_field :background_url, role: "uploadcare-uploader", 'data-preview-step' => "false", 'data-images-only' => "true", 'data-crop'=> "1024x768 minimum", 'data-clearable' => "true" %>
     </div>
   </div>
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= f.submit 'Salvar Certificado', :class => 'btn btn-primary' %>
     <%= link_to t(:cancel, :default => t("helpers.links.cancel")), certifieds_path, :class => 'btn' %>
   </div>
 <% end %>
