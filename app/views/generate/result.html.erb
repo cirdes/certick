@@ -18,7 +18,7 @@
 
     font-size: 30pt;
     top: 350px;
-    
+
   }
 
   .well{
@@ -40,9 +40,6 @@
 <center>
   <div class="result well">
     <span class="name"><%= @attendee .name %></span>
-    <%= image_tag @certified.background.url, :class => 'image' %>
+    <%= image_tag @certified.background.url(:default), :class => 'image' %>
   </div>
 <center>
-
-
-

@@ -1,20 +1,15 @@
-
 class CertifiedsController < ApplicationController
   before_action :set_certified, only: [:show, :update, :destroy]
-
   before_action :get_events, only: [:new]
 
   # GET /certifieds
   # GET /certifieds.json
   def index
-
     logger.info "get own certifieds."
 
     @certifieds = Certified.where(user: self.current_user)
-
     logger.info "consuming certifieds event from api."
-
-    @certifieds.each { |c| 
+    @certifieds.each { |c|
       c.event = find_event c.event_id
     }
   end
@@ -22,21 +17,17 @@ class CertifiedsController < ApplicationController
   # GET /certifieds/1
   # GET /certifieds/1.json
   def show
-
     @certified.event = find_event @certified.event_id
-
-    
   end
 
   # GET /certifieds/new
   def new
     @certified = Certified.new
-
     certifieds = Certified.where(:user => current_user)
 
-    certifieds.each { |c| 
+    certifieds.each { |c|
       event = @events.select { |e| e.id == c.event_id }.first
-      @events.delete event if event != nil 
+      @events.delete event if event != nil
     }
 
     redirect_to certifieds_url, notice: "No events available to add a background. All your events already have background set." if @events.count == 0
@@ -45,7 +36,6 @@ class CertifiedsController < ApplicationController
   # POST /certifieds
   # POST /certifieds.json
   def create
-
     @certified = Certified.new(certified_params)
     @certified.slug = generate_token
     @certified.user = self.current_user
@@ -55,9 +45,9 @@ class CertifiedsController < ApplicationController
         format.html { redirect_to @certified, notice: 'Certified was successfully created.' }
         format.json { render action: 'show', status: :created, location: @certified }
       else
-        format.html { 
+        format.html {
           get_events
-          render action: 'new' 
+          render action: 'new'
         }
         format.json { render json: @certified.errors, status: :unprocessable_entity }
       end
@@ -100,7 +90,6 @@ class CertifiedsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_certified
-      
       @certified = Certified.find(params[:id])
     end
 
@@ -110,7 +99,7 @@ class CertifiedsController < ApplicationController
     end
 
     def get_events
-      @events = SimpleEventickApi::Event.all current_user.token 
+      @events = SimpleEventickApi::Event.all current_user.token
     end
 
     def find_event id

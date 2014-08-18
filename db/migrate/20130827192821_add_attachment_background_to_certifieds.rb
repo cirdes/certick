@@ -1,11 +1,9 @@
 class AddAttachmentBackgroundToCertifieds < ActiveRecord::Migration
   def self.up
-    change_table :certifieds do |t|
-      t.attachment :background
-    end
+    add_attachment :certifieds, :background
   end
 
   def self.down
-    drop_attached_file :certifieds, :background
+    remove_attachment :certifieds, :background
   end
 end
