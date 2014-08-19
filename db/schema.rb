@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140719141222) do
+ActiveRecord::Schema.define(version: 20140818190638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140719141222) do
     t.integer  "event_id"
     t.integer  "user_id"
     t.string   "background_url"
+    t.string   "name_color"
   end
 
   add_index "certifieds", ["user_id"], name: "index_certifieds_on_user_id", using: :btree

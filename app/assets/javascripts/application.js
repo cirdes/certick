@@ -16,3 +16,24 @@
 //= require turbolinks
 //= require zeroclipboard
 //= require_tree .
+
+
+
+$(document).ready(function () {
+
+	var updatePreview = function() {
+      var color = $(this).chromoselector('getColor');
+      $(this).css({
+          'background-color': color.getHexString(),
+          'color': color.getTextColor().getHexString(),
+          'text-shadow': '0 1px 0 ' + color.getTextColor().getTextColor().getHexString()
+      });
+
+      $('.color').val(color.getHexString());
+  };
+
+  $('.color').chromoselector({
+  	create: updatePreview,
+    update: updatePreview
+  });
+});

@@ -38,3 +38,11 @@
 .nav .no-link{
 	padding: 10px 15px 10px;
 }
+
+.form-control{
+	margin-bottom: 10px;
+}
+
+.footer{
+	margin-top:20px; 
+}

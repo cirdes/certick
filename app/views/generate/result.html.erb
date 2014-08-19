@@ -39,9 +39,9 @@
 
 <center>
   <div class="result well">
-    <span class="name"><%= @attendee .name %></span>
+    <span class="name" style="color: <%= @certified.name_color %>"><%= @attendee.name.upcase %></span>
 
-    <%= image_tag @certified.background_url, :class => 'image', style: 'height: 768px; width:1024px' %>
+    <%= image_tag @certified.background_url, :class => 'image', style: "height: 768px; width:1024px" %>
 
   </div>
 <center>

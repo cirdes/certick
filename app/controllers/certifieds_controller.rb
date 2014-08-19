@@ -116,7 +116,7 @@ class CertifiedsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def certified_params
-      params.require(:certified).permit( :background_url, :event_id)
+      params.require(:certified).permit( :background_url, :event_id, :name_color)
     end
 
     def get_events
