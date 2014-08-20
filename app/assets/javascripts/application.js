@@ -28,8 +28,6 @@ $(document).ready(function () {
           'color': color.getTextColor().getHexString(),
           'text-shadow': '0 1px 0 ' + color.getTextColor().getTextColor().getHexString()
       });
-
-      $('.color').val(color.getHexString());
   };
 
   $('.color').chromoselector({

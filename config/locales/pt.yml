@@ -46,6 +46,7 @@ pt:
         slug: "Slug"
         event_id: "Evento"
         background_url: "Imagem de Fundo"
+        name_color: "Cor do Nome"
         thumb: "Miniatura"
     errors:
       template:

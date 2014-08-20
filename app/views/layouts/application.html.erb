@@ -88,5 +88,24 @@
     UPLOADCARE_PUBLIC_KEY = "1ea1fd70045cacc6ef90";
   </script>
   <script src="//ucarecdn.com/widget/1.3.1/uploadcare/uploadcare-1.3.1.min.js"></script>
-  
+  <script>
+    $(document).ready(function () {
+
+      var updatePreview = function() {
+          var color = $(this).chromoselector('getColor');
+          $(this).css({
+              'background-color': color.getHexString(),
+              'color': color.getTextColor().getHexString(),
+              'text-shadow': '0 1px 0 ' + color.getTextColor().getTextColor().getHexString()
+          });
+      };
+
+      $('.color').chromoselector({
+        create:updatePreview,
+        update: updatePreview
+      });
+
+      $('.color').val('#000000')
+    });
+  </script>
 </html>
