@@ -12,8 +12,6 @@ class GenerateController < ApplicationController
   # POST /generate
   # POST /generate.json
   def create
-    #logger.info "Token for user #{@certified.user.email}: #{@certified.user.token}"
-
     attendees = SimpleEventickApi::Attendee.all @certified.user.token, @certified.event_id
 
     @attendee = attendees.select { |x| x.email == params[:email] }.first
@@ -28,17 +26,17 @@ class GenerateController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_certified
-      @certified = Certified.where(slug: params[:slug]).first
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_certified
+    @certified = Certified.where(slug: params[:slug]).first
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def certified_params
-      params.require(:certified).permit(:slug, :background)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def certified_params
+    params.require(:certified).permit(:slug, :background)
+  end
 
-    def find_event id
-      SimpleEventickApi::Event.find current_user.token, id
-    end
+  def find_event id
+    SimpleEventickApi::Event.find current_user.token, id
+  end
 end

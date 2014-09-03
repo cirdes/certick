@@ -1,4 +1,3 @@
-
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -27,11 +26,7 @@ class ApplicationController < ActionController::Base
 
   private
     def is_logged
-
       logger.info "check if user is logged."
-
-      
-
       logger.info "redirect to certified index if user logged." if current_user and is_a? SessionsController
     end
 
@@ -44,9 +39,9 @@ class ApplicationController < ActionController::Base
     def require_login
       logger.info "check if controller need login."
 
-      if !is_a?(SessionsController) && !is_a?(GenerateController) 
-        logger.info "is not a sessions controler." 
-        
+      if !is_a?(SessionsController) && !is_a?(GenerateController)
+        logger.info "is not a sessions controler."
+
         logger.info "redirect to root due to current user is nil." unless current_user
         redirect_to root_path unless current_user
       end

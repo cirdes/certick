@@ -1,12 +1,6 @@
 class CertifiedsController < ApplicationController
-# <<<<<<< HEAD
   before_action :set_certified, only: [:show, :edit, :update, :destroy]
-
   before_action :get_events, only: [:new, :edit]
-# =======
-#   before_action :set_certified, only: [:show, :update, :destroy]
-#   before_action :get_events, only: [:new]
-# >>>>>>> cf354444e0f8e11251bd3ca031f22ba95c64fb80
 
   # GET /certifieds
   # GET /certifieds.json
@@ -58,12 +52,7 @@ class CertifiedsController < ApplicationController
       else
         format.html {
           get_events
-#<<<<<<< HEAD
-
-          redirect_to action: 'new' 
-#=======
-#          render action: 'new'
-#>>>>>>> cf354444e0f8e11251bd3ca031f22ba95c64fb80
+          redirect_to action: 'new'
         }
         format.json { render json: @certified.errors, status: :unprocessable_entity }
       end
@@ -80,7 +69,7 @@ class CertifiedsController < ApplicationController
         format.html { redirect_to @certified, notice: 'Certified was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { 
+        format.html {
           get_events
           render action: 'edit', alert: @certified.errors.to_a
         }
@@ -100,31 +89,29 @@ class CertifiedsController < ApplicationController
   end
 
   protected
-
-    def generate_token
-      token = loop do
-        random_token = SecureRandom.urlsafe_base64(nil, false)
-        break random_token unless Certified.where(slug: random_token).exists?
-      end
+  def generate_token
+    token = loop do
+      random_token = SecureRandom.urlsafe_base64(nil, false)
+      break random_token unless Certified.where(slug: random_token).exists?
     end
+  end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_certified
-      @certified = Certified.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_certified
+    @certified = Certified.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def certified_params
-      params.require(:certified).permit( :background_url, :event_id, :name_color)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def certified_params
+    params.require(:certified).permit( :background_url, :event_id, :name_color)
+  end
 
-    def get_events
-      @events = SimpleEventickApi::Event.all current_user.token
-    end
+  def get_events
+    @events = SimpleEventickApi::Event.all current_user.token
+  end
 
-    def find_event id
-      SimpleEventickApi::Event.find current_user.token, id
-    end
-    
+  def find_event id
+    SimpleEventickApi::Event.find current_user.token, id
+  end
 end
