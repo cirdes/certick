@@ -17,8 +17,7 @@ class GenerateController < ApplicationController
 			@name = attendee.upcase
       render 'result', layout: false
     elsif
-      logger.info "Attendee not found"
-      redirect_to generate_new_url(params), notice: 'This user does not in roll list of event.'
+      redirect_to generate_new_url(params), notice: 'Seu email não foi localizado, por favor utilize o mesmo email utilizado no Eventick.'
     end
   end
 
