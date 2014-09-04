@@ -1,61 +1,48 @@
 class CertifiedsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_certified, only: [:show, :edit, :update, :destroy]
-  before_action :get_events, only: [:new, :edit]
+
+  respond_to :html
 
   # GET /certifieds
   # GET /certifieds.json
   def index
-    logger.info "get own certifieds."
-
     @certifieds = Certified.where(user: self.current_user)
-    logger.info "consuming certifieds event from api."
-    @certifieds.each { |c|
-      c.event = find_event c.event_id
-    }
   end
 
   # GET /certifieds/1
   # GET /certifieds/1.json
   def show
-    @certified.event = find_event @certified.event_id
   end
 
   # GET /certifieds/1/edit
   def edit
-    @certified.event = find_event @certified.event_id
   end
 
   # GET /certifieds/new
   def new
-    @certified = Certified.new
-    certifieds = Certified.where(:user => current_user)
+    @certified = Certified.new(user: current_user)
+    @events = Eventick::API.new.events(current_user.token).map { |p| [ p['title'], p['id'] ] }
 
-    certifieds.each { |c|
-      event = @events.select { |e| e.id == c.event_id }.first
-      @events.delete event if event != nil
-    }
-
-    redirect_to certifieds_url, notice: "No events available to add a background. All your events already have background set." if @events.count == 0
+    if @events.empty?
+      flash.now[:notice] = "No events available to add abackground. All your events already have background set."
+      redirect_to certifieds_url
+    end
   end
 
   # POST /certifieds
   # POST /certifieds.json
   def create
     @certified = Certified.new(certified_params)
+    @certified.events = events
+    @certified.attendees = attendees
     @certified.slug = generate_token
     @certified.user = self.current_user
 
-    respond_to do |format|
-      if @certified.save
-        format.html { redirect_to @certified, notice: 'Certified was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @certified }
-      else
-        format.html {
-          get_events
-          redirect_to action: 'new'
-        }
-        format.json { render json: @certified.errors, status: :unprocessable_entity }
-      end
+    flash[:notice] = "Certificado criado com sucesso." if @certified.save
+
+    respond_with(@certified) do |format|
+      format.html { redirect_to @certified }
     end
   end
 
@@ -70,7 +57,6 @@ class CertifiedsController < ApplicationController
         format.json { head :no_content }
       else
         format.html {
-          get_events
           render action: 'edit', alert: @certified.errors.to_a
         }
         format.json { render json: @certified.errors, status: :unprocessable_entity }
@@ -88,7 +74,19 @@ class CertifiedsController < ApplicationController
     end
   end
 
-  protected
+  private
+  def events
+    event = eventick.event(current_user.token, params[:certified][:event_id]).first
+    { event_title: event['title'], event_start_at: event['start_at'], event_venue: event['venue'], event_slug: event['slug'] }
+  end
+
+  def attendees
+    hash = { }
+    attendees = eventick.attendees(current_user.token, params[:certified][:event_id])
+    attendees.each { |a| hash[a['email']] = a['name'] }
+    hash
+  end
+
   def generate_token
     token = loop do
       random_token = SecureRandom.urlsafe_base64(nil, false)
@@ -96,7 +94,6 @@ class CertifiedsController < ApplicationController
     end
   end
 
-  private
   # Use callbacks to share common setup or constraints between actions.
   def set_certified
     @certified = Certified.find(params[:id])
@@ -105,13 +102,5 @@ class CertifiedsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def certified_params
     params.require(:certified).permit( :background_url, :event_id, :name_color)
-  end
-
-  def get_events
-    @events = SimpleEventickApi::Event.all current_user.token
-  end
-
-  def find_event id
-    SimpleEventickApi::Event.find current_user.token, id
   end
 end
