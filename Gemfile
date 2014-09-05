@@ -58,11 +58,13 @@ gem 'aws-sdk', '~> 1.51.0'
 
 gem 'zeroclipboard-rails', '~> 0.1.0'
 
+gem 'rails_12factor', group: :production
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn', '~> 4.8.3'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
